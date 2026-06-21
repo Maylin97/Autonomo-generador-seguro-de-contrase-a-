@@ -44,3 +44,47 @@ def validar_configuracion(longitud, letras, numeros, simbolos, ambiguos):
 
 
     return True
+# Función que crea el catálogo de caracteres
+def crear_catalogo(letras, numeros, simbolos, ambiguos):
+
+    caracteres = ""
+
+
+    # Agrega letras si el usuario desea
+    if letras:
+        caracteres += LETRAS
+
+
+    # Agrega números si el usuario desea
+    if numeros:
+        caracteres += NUMEROS
+
+
+    # Agrega símbolos normales
+    if simbolos:
+        caracteres += SIMBOLOS
+
+
+    # Agrega símbolos ambiguos
+    if ambiguos:
+        caracteres += SIMBOLOS_AMBIGUOS
+
+
+    return caracteres
+
+
+
+# Función encargada de generar la contraseña
+def generar_contrasena(longitud, caracteres):
+
+    contraseña = ""
+
+
+    # Bucle que genera cada carácter
+    for i in range(longitud):
+
+        # Selecciona un carácter aleatorio
+        contraseña += random.choice(caracteres)
+
+
+    return contraseña
