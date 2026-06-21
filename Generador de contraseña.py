@@ -88,3 +88,144 @@ def generar_contrasena(longitud, caracteres):
 
 
     return contraseña
+# ================= CAPA DE PRESENTACIÓN =================
+
+
+# Función principal del programa
+def iniciar_programa():
+
+
+    # Permite repetir la generación
+    continuar = "SI"
+
+
+
+    # Bucle principal del sistema
+    while continuar == "SI":
+
+
+        print("\n===== GENERADOR SEGURO DE CONTRASEÑAS =====")
+
+
+
+        # Solicita longitud
+        longitud = 0
+
+
+        # Validación usando bucle
+        while longitud < 8:
+
+            longitud = int(
+                input("Ingrese longitud (mínimo 8): ")
+            )
+
+
+            if longitud < 8:
+
+                print(
+                    "Error: Debe ingresar mínimo 8 caracteres"
+                )
+
+
+
+        # Preguntas al usuario
+
+        usar_letras = input(
+            "¿Usar letras? SI/NO: "
+        ).upper() == "SI"
+
+
+
+        usar_numeros = input(
+            "¿Usar números? SI/NO: "
+        ).upper() == "SI"
+
+
+
+        usar_simbolos = input(
+            "¿Usar símbolos? SI/NO: "
+        ).upper() == "SI"
+
+
+
+        usar_ambiguos = input(
+            "¿Usar símbolos ambiguos? SI/NO: "
+        ).upper() == "SI"
+
+
+
+
+        # Comprueba la configuración
+        if validar_configuracion(
+            longitud,
+            usar_letras,
+            usar_numeros,
+            usar_simbolos,
+            usar_ambiguos
+        ):
+
+
+
+            # Crea lista de caracteres
+            caracteres = crear_catalogo(
+                usar_letras,
+                usar_numeros,
+                usar_simbolos,
+                usar_ambiguos
+            )
+
+
+
+            # Genera contraseña
+            contraseña = generar_contrasena(
+                longitud,
+                caracteres
+            )
+
+
+
+            # Muestra resultado
+            print("\nContraseña generada:")
+            print(contraseña)
+
+
+
+
+            # Opción de copiar
+            copiar = input(
+                "¿Desea copiar la contraseña? SI/NO: "
+            ).upper()
+
+
+
+            if copiar == "SI":
+
+                print(
+                    "Copie manualmente la contraseña mostrada."
+                )
+
+
+
+        else:
+
+            print(
+                "Configuración inválida"
+            )
+
+
+
+        # Pregunta si desea repetir
+        continuar = input(
+            "\n¿Desea generar otra contraseña? SI/NO: "
+        ).upper()
+
+
+
+    print(
+        "\nPrograma finalizado."
+    )
+
+
+
+# Inicio del programa
+iniciar_programa()
